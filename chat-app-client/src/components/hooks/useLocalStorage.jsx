@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const useLocalStorage = (key, initialValue) => {
-	const PREFIX = "chat-app-";
+  const PREFIX = "chat-app-";
   const prefixedKey = PREFIX + key;
 
   const [value, setValue] = useState(() => {
@@ -9,14 +9,14 @@ const useLocalStorage = (key, initialValue) => {
     if (jsonValue != null) {
       return JSON.parse(jsonValue);
     } else {
-			return initialValue;
-		}
+      return initialValue;
+    }
   });
 
-	useEffect(() => {
-		localStorage.getItem(prefixedKey, JSON.stringify(value));
-	}, [prefixedKey, value]);
+  useEffect(() => {
+    localStorage.setItem(prefixedKey, JSON.stringify(value));
+  }, [prefixedKey, value]);
 
-	return [value, setValue];
+  return [value, setValue];
 };
 export default useLocalStorage;
