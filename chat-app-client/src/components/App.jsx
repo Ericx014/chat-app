@@ -1,6 +1,8 @@
+import AuthenticationPage from "./AuthenticationPage";
+
 const App = () => {
 	return (
-		<div>Hello</div>
+		<AuthenticationPage />
 	)
 }
 
