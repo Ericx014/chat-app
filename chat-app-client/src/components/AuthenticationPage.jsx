@@ -2,13 +2,12 @@ import { useState } from "react";
 import { useUserContext } from "./App";
 
 const AuthenticationPage = () => {
-  const { setCurrentUser } = useUserContext();
-
+  const { login } = useUserContext();
   const [phoneNo, setPhoneNo] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setCurrentUser(phoneNo);
+		login(phoneNo);
   };
 
   return (
@@ -21,7 +20,7 @@ const AuthenticationPage = () => {
           <h1 className="font-bold mb-5 text-lg capitalize">Welcome</h1>
         </div>
         <input
-					required
+          required
           type="text"
           placeholder="Phone No."
           value={phoneNo}

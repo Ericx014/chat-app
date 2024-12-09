@@ -9,9 +9,9 @@ const NewContactModal = ({ onClose }) => {
 
   const handleAddContact = (e) => {
     e.preventDefault();
-		createContact(phoneNo, name);
-		setPhoneNo("");
-		setName("");
+    createContact(phoneNo, name);
+    setPhoneNo("");
+    setName("");
   };
 
   return (
@@ -44,6 +44,7 @@ const NewContactModal = ({ onClose }) => {
         />
         <div className="flex justify-end space-x-3">
           <button
+            type="button"
             onClick={onClose}
             className="w-[80px] px-4 py-2 bg-[#778da941] rounded-md"
           >

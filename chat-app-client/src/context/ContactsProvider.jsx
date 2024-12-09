@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import useLocalStorage from "../components/hooks/useLocalStorage";
+import { useUserContext } from "../components/App";
 
 const ContactsContext = React.createContext();
 
@@ -9,11 +10,19 @@ const useContacts = () => {
 
 // eslint-disable-next-line react/prop-types
 const ContactsProvider = ({ children }) => {
+  const { currentUser } = useUserContext();
   const [contacts, setContacts] = useLocalStorage("contacts", []);
 
-  const createContact = (phoneNo, name) => {
+  const createContact = (phoneNo, name, contactOwner = currentUser) => {
     setContacts((prevContacts) => {
-      return [...prevContacts, { phoneNo, name }];
+			const newContactObject = { phoneNo: phoneNo, name: name, contactOwner };
+      const contactExists = prevContacts.find(
+        (contact) => contact.phoneNo === phoneNo
+      );
+      if (contactExists) {
+        return prevContacts;
+      }
+      return [...prevContacts, newContactObject];
     });
   };
 
