@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useConversations } from "../context/ConversationsProvider";
 import { useMessages } from "../context/MessagesProvider";
 import { useUserContext } from "./App";
+import MessageBubble from "./MessageBubble";
 
 const Conversation = () => {
   const { selectedContact } = useConversations();
@@ -12,7 +13,7 @@ const Conversation = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addNewMessage(selectedContact.phoneNo, text);
-		setText("")
+    setText("");
   };
 
   const messageToDisplay = messages.filter(
@@ -30,18 +31,7 @@ const Conversation = () => {
       </div>
       <div className="flex flex-col grow">
         {messageToDisplay.map((message, index) => {
-          return (
-            <div
-              key={index}
-              className={`p-2 rounded-lg max-w-[70%] ${
-                message.senderNo === currentUser
-                  ? "self-end bg-blue-500 text-white"
-                  : "self-start bg-gray-200 text-black"
-              }`}
-            >
-              {message.text}
-            </div>
-          );
+          return <MessageBubble message={message} key={index} />;
         })}
       </div>
       <form
@@ -54,7 +44,7 @@ const Conversation = () => {
           onChange={(e) => setText(e.target.value)}
           required
           placeholder="Enter a message"
-          className="focus:outline-none focus:placeholder-transparent py-2 px-3 w-[85%] rounded-lg"
+          className="focus:outline-none focus:placeholder-transparent py-2 mx-3 px-3 w-[80%] rounded-lg"
         />
         <button type="submit" className="mx-10">
           Send

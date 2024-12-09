@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useContacts } from "../context/ContactsProvider";
 
 /* eslint-disable react/prop-types */
-const NewContactModal = ({ onClose }) => {
+const NewContactModal = ({ closeModal }) => {
   const { createContact } = useContacts();
   const [phoneNo, setPhoneNo] = useState("");
   const [name, setName] = useState("");
@@ -12,6 +12,7 @@ const NewContactModal = ({ onClose }) => {
     createContact(phoneNo, name);
     setPhoneNo("");
     setName("");
+    closeModal();
   };
 
   return (
@@ -21,7 +22,7 @@ const NewContactModal = ({ onClose }) => {
         className="bg-white p-6 rounded-lg w-[400px] relative"
       >
         <button
-          onClick={onClose}
+          onClick={closeModal}
           className="absolute top-3 right-3 rounded-md text-2xl font-bold hover:bg-gray-100 w-[30px] h-[30px] flex items-center justify-center"
         >
           ×
@@ -45,7 +46,7 @@ const NewContactModal = ({ onClose }) => {
         <div className="flex justify-end space-x-3">
           <button
             type="button"
-            onClick={onClose}
+            onClick={closeModal}
             className="w-[80px] px-4 py-2 bg-[#778da941] rounded-md"
           >
             Cancel

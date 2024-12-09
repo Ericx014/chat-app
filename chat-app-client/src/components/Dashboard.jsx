@@ -22,12 +22,12 @@ const Dashboard = () => {
 
 	return (
     <MessagesProvider>
-			<section className="bg-gray-100 flex flex-row">
-				<Sidebar onAddContact={handleOpenModal} />
-				{selectedContact && <Conversation />}
-			</section>
-			{modalIsOpen && <NewContactModal onClose={handleCloseModal} />}
-		</MessagesProvider>
+      <section className="bg-gray-100 flex flex-row">
+        <Sidebar onAddContact={handleOpenModal} />
+        {selectedContact && <Conversation />}
+      </section>
+      {modalIsOpen && <NewContactModal closeModal={handleCloseModal} />}
+    </MessagesProvider>
   );
 }
 
